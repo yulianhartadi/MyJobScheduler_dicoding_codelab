@@ -26,8 +26,8 @@ import cz.msebera.android.httpclient.Header;
 public class GetCurrentWeatherJobService extends JobService {
 
     public static final String TAG = GetCurrentWeatherJobService.class.getSimpleName();
-    final String APP_ID = "ISIKAN DENGAN API KEY ANDA";
-    final String CITY = "Jakarta";
+    final String APP_ID = "4def30ead4b81ea6977856c9ce881982";
+    final String CITY = "Surakarta,ID";
     //final String CITY = "ISIKAN DENGAN NAMA KOTA ANDA";
 
     @Override
@@ -46,7 +46,7 @@ public class GetCurrentWeatherJobService extends JobService {
     private void getCurrentWeather(final JobParameters job) {
         Log.d(TAG, "Running");
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = "htp://api.openweathermap.org/data/2.5/weather?q=" + CITY + "appid=" + APP_ID;
+        String url = "https://api.openweathermap.org/data/2.5/weather?q="+CITY+"&appid="+APP_ID;
         Log.e(TAG, "getCurrentWeather: " + url);
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -89,6 +89,7 @@ public class GetCurrentWeatherJobService extends JobService {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel notificationChannel = new NotificationChannel("ID", "name", importance);
+            if (notificationManager == null) throw new AssertionError();
             notificationManager.createNotificationChannel(notificationChannel);
             builder = new NotificationCompat.Builder(context, notificationChannel.getId());
         } else {
