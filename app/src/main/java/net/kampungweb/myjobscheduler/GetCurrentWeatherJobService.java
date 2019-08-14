@@ -100,7 +100,7 @@ public class GetCurrentWeatherJobService extends JobService {
                 .setSmallIcon(R.drawable.ic_replay)
                 .setContentText(message)
                 .setColor(ContextCompat.getColor(context, android.R.color.black))
-                .setVibrate(new long[]{1000,1000,1000,1000})
+                .setVibrate(new long[]{1000, 1000, 1000, 1000})
                 .setSound(alarmSound);
 
         notificationManager.notify(notifId, builder.build());
